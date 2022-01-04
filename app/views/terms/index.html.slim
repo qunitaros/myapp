@@ -1,0 +1,34 @@
+h1 用語一覧
+br
+= search_form_for @q, class: 'mb-5' do |f|
+  .form-group.row 
+    = f.label :name_cont, '用語', class: 'col-sm-2 col-form-label'
+    .col-sm-10 
+      = f.search_field :name_cont, class: 'form-control'
+  .form-group.row 
+    = f.label :field_cont, '分野', class: 'col-sm-2 col-form-label'
+    .col-sm-10 
+      = f.search_field :field_cont, class: 'form-control'
+  .form-group 
+    = f.submit class: 'btn btn-outline-primary'
+br
+= link_to '新規登録', new_term_path, class: 'btn btn-primary'
+
+
+.mb-5
+table.table.table-hover 
+  thead.thead-default 
+    tr 
+      th= Term.human_attribute_name(:name)
+      th= Term.human_attribute_name(:field)
+      th
+  tbody 
+    - @terms.each do |term|
+      tr 
+        td= link_to term.name, term 
+        td= term.field 
+        td 
+          = link_to '編集', edit_term_path(term), class: 'btn btn-primary'
+          = link_to '削除', term, method: :delete, data: { confirm: "「#{term.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+.mb-3 
+  = paginate @terms

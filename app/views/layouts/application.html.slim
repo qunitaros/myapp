@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title
+      | Myapp
+    meta[name="viewport" content="width=device-width,initial-scale=1"]
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    .app-title.navbar.navbar-expand-md.navbar-light.bg-light.container
+      .navbar-brand 単語帳
+
+      ul.navbar-nav.ml-auto
+        - if current_user 
+          li.nav-item= link_to '登録した用語一覧', terms_path, class: 'nav-link'
+          li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else 
+          li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
+          li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
+    .container.mt-3
+      - if flash.notice.present?
+        .alert.alert-success = flash.notice 
+      - if flash.alert.present?
+        .alert.alert-danger = flash.alert  
+      = yield

@@ -1,0 +1,6 @@
+h1 用語の新規登録
+
+.nav.justyfy-content-end 
+  = link_to '一覧', terms_path, class: 'nav-link'
+
+= render partial: 'form', locals: { term: @term }

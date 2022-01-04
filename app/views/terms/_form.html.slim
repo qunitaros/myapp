@@ -1,0 +1,19 @@
+- if term.errors.present?
+  ul#error_explanation 
+    - term.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: term, local: true do |f|
+  .form-group 
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id: 'term_name'
+  br
+  .form-group 
+    = f.label :field
+    = f.text_field :field, class: 'form-control', id: 'term_field'
+  br
+  .form-group 
+    = f.label :description
+    = f.text_area :description, row: 5, class: 'form-control', id: 'term_description'
+  br
+  = f.submit nil, class: 'btn btn-primary'
