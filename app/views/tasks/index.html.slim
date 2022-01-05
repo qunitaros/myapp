@@ -1,0 +1,21 @@
+h1 タスク一覧
+br
+= link_to 'タスクの登録', new_task_path, class: 'btn btn-primary'
+
+.mb-5
+table.table.table-hover 
+  thead.thead-default 
+    tr 
+      th= Task.human_attribute_name(:name)
+      th= Task.human_attribute_name(:created_at)
+      th
+  tbody 
+    - @tasks.each do |task|
+      tr 
+        td= link_to task.name, task 
+        td= task.created_at.to_s(:datetime_jp) 
+        td 
+          = link_to '編集', edit_task_path(task), class: 'btn btn-info'
+          = link_to '完了', task, method: :delete, data: { confirm: "「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-success'
+.mb-3 
+  = paginate @tasks

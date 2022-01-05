@@ -1,0 +1,20 @@
+h1 タスクの詳細
+
+.nav.justify-content-end 
+  = link_to '一覧', tasks_path, class: 'nav-link'
+
+table.table.table-hover 
+  tbody 
+    tr 
+      th= Task.human_attribute_name(:name)
+      td= @task.name
+    tr 
+      th= Task.human_attribute_name(:created_at)
+      td= @task.created_at.to_s(:datetime_jp)
+    tr 
+      th= Task.human_attribute_name(:description)
+      td= simple_format(h(@task.description), {}, sanitize: false, wrapper_tag: "div")
+br
+= link_to '編集', edit_task_path, class: 'btn btn-info mr-3'
+= link_to '完了', @task, method: :delete, data: { confirm: "「#{@task.name}」を削除します。よろしいですか？" }, class: 'btn btn-success'
+    
