@@ -27,7 +27,7 @@ module Myapp
 
     # RSpecの設定
     config.generators do |g|
-      g.test_frameword :rspec,
+      g.test_framework :rspec,
         fixtures: false,
         view_specs: false,
         helper_specs: false,
