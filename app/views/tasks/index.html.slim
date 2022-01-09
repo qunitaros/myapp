@@ -24,6 +24,6 @@ table.table.table-hover
         td= task.created_at.to_s(:datetime_jp) 
         td 
           = link_to '編集', edit_task_path(task), class: 'btn btn-info'
-          = link_to '完了', task, method: :delete, data: { confirm: "「#{task.name}」を削除します。よろしいですか？" }, class: 'btn btn-success'
+          = link_to '完了', task, method: :delete, data: { confirm: "「#{task.name}」を完了します。よろしいですか？" }, class: 'btn btn-success'
 .mb-3 
   = paginate @tasks

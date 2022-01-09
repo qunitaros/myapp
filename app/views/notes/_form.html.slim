@@ -1,0 +1,19 @@
+- if note.errors.present?
+  ul#error_explanation 
+    - note.errors.full_messages.each do |message|
+      li= message
+
+= form_with model: note, local: true do |f|
+  .form-group 
+    = f.label :name
+    = f.text_field :name, class: 'form-control', id: 'note_name'
+  br
+  .form-group 
+    = f.label :field
+    = f.text_field :field, class: 'form-control', id: 'term_field'
+  br
+  .form-group 
+    = f.label :content
+    = f.text_area :content, size: "20x30", class: 'form-control', id: 'note_content'
+  br
+  = f.submit nil, class: 'btn btn-light'

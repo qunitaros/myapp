@@ -1,0 +1,29 @@
+h1 ノート一覧
+br
+= search_form_for @q, class: 'mb-5' do |f|
+  .form-group.row 
+    = f.label :name_cont, 'ノート名', class: 'col-sm-2 col-form-label'
+    .col-sm-10 
+      = f.search_field :name_cont, class: 'form-control'
+  .form-group 
+    = f.submit class: 'btn btn-outline-primary'
+br
+= link_to 'ノートの登録', new_note_path, class: 'btn btn-primary'
+
+.mb-5
+table.table.table-hover 
+  thead.thead-default 
+    tr 
+      th= Note.human_attribute_name(:name)
+      th= Note.human_attribute_name(:field)
+      th
+  tbody 
+    - @notes.each do |note|
+      tr 
+        td= link_to note.name, note 
+        td= note.field
+        td 
+          = link_to '編集', edit_note_path(note), class: 'btn btn-light'
+          = link_to '削除', note, method: :delete, data: { confirm: "「#{note.name}」を削除します。よろしいですか？" }, class: 'btn btn-dark'
+.mb-3 
+  = paginate @notes

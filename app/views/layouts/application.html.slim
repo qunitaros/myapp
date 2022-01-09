@@ -10,16 +10,18 @@ html
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light.container
-      .navbar-brand 単語帳
+      .navbar-brand 勉強用
 
-      ul.navbar-nav.ml-auto
-        - if current_user 
-          li.nav-item= link_to '登録した用語一覧', terms_path, class: 'nav-link'
-          li.nav-item= link_to '登録したタスク一覧', tasks_path, class: 'nav-link'
-          li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
-        - else 
-          li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
-          li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
+      .collapse.navbar-collapse.justify-content-end
+        ul.navbar-nav.justify-content-end
+          - if current_user 
+            li.nav-item= link_to '用語', terms_path, class: 'nav-link'
+            li.nav-item= link_to 'タスク', tasks_path, class: 'nav-link'
+            li.nav-item= link_to 'ノート', notes_path, class: 'nav-link'
+            li.nav-item= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link'
+          - else 
+            li.nav-item= link_to '新規登録', new_user_registration_path, class: 'nav-link'
+            li.nav-item= link_to 'ログイン', new_user_session_path, class: 'nav-link'
     .container.mt-3
       - if flash.notice.present?
         .alert.alert-success = flash.notice 

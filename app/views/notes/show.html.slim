@@ -1,0 +1,20 @@
+h1 ノートの詳細
+
+.nav.justify-content-end 
+  = link_to '一覧', notes_path, class: 'nav-link'
+
+table.table.table-hover 
+  tbody 
+    tr 
+      th= Note.human_attribute_name(:name)
+      td= @note.name
+    tr 
+      th= Note.human_attribute_name(:created_at)
+      td= @note.created_at.to_s(:datetime_jp)
+    tr 
+      th= Note.human_attribute_name(:content)
+      td= simple_format(h(@note.content), {}, sanitize: false, wrapper_tag: "div")
+br
+= link_to '編集', edit_note_path, class: 'btn btn-light mr-3'
+= link_to '削除', @note, method: :delete, data: { confirm: "「#{@note.name}」を削除します。よろしいですか？" }, class: 'btn btn-dark'
+    

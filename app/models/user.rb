@@ -6,4 +6,5 @@ class User < ApplicationRecord
   
   has_many :terms
   has_many :tasks
+  has_many :notes
 end

@@ -10,6 +10,7 @@ ja:
     models: 
       term: 用語
       task: タスク
+      note: ノート
     attributes:
       term:
         id: ID
@@ -21,6 +22,11 @@ ja:
         name: タスク
         created_at: 作成日
         description: 詳しい内容
+      note:
+        id: ID
+        name: ノート名
+        field: 分野
+        content: 内容
 
   date:
     abbr_day_names:
